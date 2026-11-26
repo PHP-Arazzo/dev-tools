@@ -12,6 +12,17 @@ $autoload = is_file(__DIR__.'/../../../../vendor/autoload.php')
 
 require_once $autoload;
 
+spl_autoload_register(static function (string $class): void {
+    $prefix = 'Alama\\Tools\\IssueIntake\\';
+    if (str_starts_with($class, $prefix)) {
+        $relative = substr($class, strlen($prefix));
+        $file = dirname(__DIR__).'/src/'.str_replace('\\', '/', $relative).'.php';
+        if (is_file($file)) {
+            require_once $file;
+        }
+    }
+});
+
 function arazzoSchema(): Schema
 {
     $root = is_dir(dirname(__DIR__, 4).'/config') ? dirname(__DIR__, 4) : dirname(__DIR__, 3);
