@@ -6,11 +6,17 @@ use Alama\Tools\IssueIntake\Finding;
 use Alama\Tools\IssueIntake\Schema;
 use Symfony\Component\Process\Process;
 
-require_once __DIR__.'/../../../vendor/autoload.php';
+$autoload = is_file(__DIR__.'/../../../../vendor/autoload.php')
+    ? __DIR__.'/../../../../vendor/autoload.php'
+    : __DIR__.'/../../../vendor/autoload.php';
+
+require_once $autoload;
 
 function arazzoSchema(): Schema
 {
-    return Schema::fromFile(dirname(__DIR__, 3).'/config/issues/schema.yaml');
+    $root = is_dir(dirname(__DIR__, 4).'/config') ? dirname(__DIR__, 4) : dirname(__DIR__, 3);
+
+    return Schema::fromFile($root.'/config/issues/schema.yaml');
 }
 
 /**

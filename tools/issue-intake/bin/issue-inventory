@@ -18,7 +18,8 @@ use Alama\Tools\IssueIntake\Validator;
  * Output: TSV with a header row, or `--format=json`.
  */
 
-$autoload = dirname(__DIR__, 3).'/vendor/autoload.php';
+$root = is_dir(dirname(__DIR__, 4).'/vendor') ? dirname(__DIR__, 4) : dirname(__DIR__, 3);
+$autoload = $root.'/vendor/autoload.php';
 
 if (!is_file($autoload)) {
     fwrite(STDERR, "issue-inventory: cannot locate vendor/autoload.php\n");

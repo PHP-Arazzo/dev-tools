@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
  * never disagree with the validator about which checks a section owns.
  */
 
-$root = dirname(__DIR__, 3);
+$root = is_dir(dirname(__DIR__, 4).'/vendor') ? dirname(__DIR__, 4) : dirname(__DIR__, 3);
 $autoload = $root.'/vendor/autoload.php';
 
 if (!is_file($autoload)) {

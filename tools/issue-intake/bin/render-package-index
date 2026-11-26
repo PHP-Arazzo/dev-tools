@@ -16,7 +16,8 @@ use Alama\Tools\IssueIntake\PackageIndex;
  *
  * Exit codes: 0 = OK, 2 = usage/error.
  */
-$autoload = dirname(__DIR__, 3).'/vendor/autoload.php';
+$root = is_dir(dirname(__DIR__, 4).'/vendor') ? dirname(__DIR__, 4) : dirname(__DIR__, 3);
+$autoload = $root.'/vendor/autoload.php';
 
 if (!is_file($autoload)) {
     fwrite(STDERR, "render-package-index: cannot locate vendor/autoload.php\n");

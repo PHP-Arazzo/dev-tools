@@ -5,7 +5,11 @@ declare(strict_types=1);
 use Alama\Tools\IssueIntake\Validator;
 use Symfony\Component\Process\Process;
 
-require_once __DIR__.'/../../../vendor/autoload.php';
+$autoload = is_file(__DIR__.'/../../../../vendor/autoload.php')
+    ? __DIR__.'/../../../../vendor/autoload.php'
+    : __DIR__.'/../../../vendor/autoload.php';
+
+require_once $autoload;
 
 /**
  * The prompt file for a section id: prompts/write-<id>.md inside the skill.
